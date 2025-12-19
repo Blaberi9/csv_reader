@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>Сортировка элементов</title>
+  <style>
+    /* Общие стили страницы */
+    body {
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      max-width: 850px;
+      margin: 30px auto;
+      padding: 0 15px;
+      background-color: #fafafa;
+      color: #333;
+    }
+
+    /* Заголовок страницы */
+    h1 {
+      text-align: center;
+      margin-bottom: 25px;
+      color: #2c3e50;
+      font-size: 24px;
+    }
+
+    /* Стили для блоков карточек (загрузка, выбор сортировки, результат) */
+    .block {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    }
+
+    /* Подзаголовки блоков */
+    .block h2 {
+      margin-bottom: 15px;
+      font-size: 18px;
+      color: #34495e;
+    }
+
+    /* Стили для подписей к полям ввода */
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #2c3e50;
+    }
+
+    /* Поле выбора файла */
+    input[type="file"] {
+      width: 100%;
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 4;
+      margin-bottom: 10px;
+    }
+
+    /* Контейнер для групп радиокнопок */
+    .options {
+      margin: 10px 0 15px 0;
+    }
+
+    /* Стили для меток радиокнопок (чтобы были в строку) */
+    .options label {
+      display: inline-block;
+      margin-right: 15px;
+      font-weight: normal;
+      cursor: pointer;
+      font-size: 15px;
+    }
+
+    /* Отступ у радиокнопок */
+    .options input[type="radio"] {
+      margin-right: 5px;
+    }
+
+    /* Общие стили для кнопок */
+    button {
+      background-color: #3498db;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 15px;
+      margin-right: 10px;
+      transition: background 0.2s;
+    }
+
+    /* Эффект наведения на кнопки */
+    button:hover {
+      background-color: #2980b9;
+    }
+
+    /* Специальный стиль для кнопки "Сохранить" */
+    button#saveButton {
+      background-color: #27ae60;
+    }
+
+    button#saveButton:hover {
+      background-color: #219653;
+    }
+
+    /* Область вывода результата */
+    #resultArea {
+      background-color: #f8f9fa;
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      padding: 15px;
+      min-height: 120px;
+      font-family: monospace; /* для сохранения форматирования */
+      font-size: 14px;
+      white-space: pre-wrap; /* перенос строк и пробелов как в тексте */
+      overflow-x: auto; /* горизонтальный скролл при длинных строках */
+    }
+
+    /* Группа кнопок под результатом */
+    .button-group {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Сортировка элементов из CSV</h1>
+
+  <!-- Блок 1: загрузка CSV-файла -->
+  <div class="block">
+    <h2>1. Загрузите файл</h2>
+    <input type="file" id="fileInput" accept=".csv">
+  </div>
+
+  <!-- Блок 2: выбор параметров сортировки -->
+  <div class="block">
+    <h2>2. Выберите сортировку</h2>
+
+    <label>Тип:</label>
+    <div class="options">
+      <label><input type="radio" name="sortOption" value="weight"> По весу</label>
+      <label><input type="radio" name="sortOption" value="color"> По цвету</label>
+      <label><input type="radio" name="sortOption" value="categoryWeight"> По категории → весу</label>
+      <label><input type="radio" name="sortOption" value="name"> По названию</label>
+    </div>
+
+    <label>Направление:</label>
+    <div class="options">
+      <label><input type="radio" name="order" value="asc" checked> По возрастанию</label>
+      <label><input type="radio" name="order" value="desc"> По убыванию</label>
+    </div>
+  </div>
+
+  <!-- Блок 3: отображение и экспорт результата -->
+  <div class="block">
+    <h2>3. Результат</h2>
+    <div id="resultArea">Загрузите CSV-файл и нажмите "Сортировать"</div>
+    <div class="button-group">
+      <button id="sortButton">Сортировать</button>
+      <button id="saveButton">Сохранить в файл</button>
+    </div>
+  </div>
+</body>
+</html>
